@@ -2,15 +2,22 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Ponderada
 
 Let's discover **Docusaurus in less than 5 minutes**.
 
-## Getting Started
+## Ponderada
 
-Get started by **creating a new site**.
+O primeiro passo da ponderada é criar um ambiente usando o framework Docussaurus
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+Claro, antes disse é necessário instalar as dependências, que são o Node.js que é o nosso motor de JavaScript e o npm (Node Package Manager), que tem a função de manipular os pacotes do Node.
+
+Depois disso criamos um diretório padrão do github:
+.github/worflows/deploy.yml
+
+Esse arquivo é necessário para a automação do Deploy no Github Pages, ele serve para empurrar os conteúdos da pasta build/ do Docussaurus para a branch gh-pages, que será utilizada para o Deploy.
+
+É nessários também, mudar nas configurações do repositório para comportar o GithubPages e avisar qual branch será utilizada.
 
 ### What you'll need
 

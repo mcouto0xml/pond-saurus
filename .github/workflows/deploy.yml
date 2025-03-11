@@ -3,7 +3,7 @@ name: Deploy Docusaurus site to GitHub Pages
 on:
   push:
     branches:
-      - main  # Aciona quando há um push na branch principal
+      - main  
 
 jobs:
   deploy:
@@ -23,13 +23,13 @@ jobs:
       # Etapa 3: Instalar dependências
       - name: Install dependencies
         run: |
-          cd ponderada  # Muda para o diretório correto
+          cd ponderada
           npm install
 
       # Etapa 4: Build do Docusaurus
       - name: Build Docusaurus site
         run: |
-          cd ponderada  # Certifique-se de estar no diretório correto
+          cd ponderada 
           npm run build
 
       # Etapa 5: Deploy no GitHub Pages
@@ -37,4 +37,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./ponderada/build  # O diretório de build correto
+          publish_dir: ./ponderada/build  

@@ -1,37 +1,40 @@
-name: Deploy Docusaurus
+name: Deploy Docusaurus site to GitHub Pages
 
 on:
   push:
     branches:
-      - main  # ou a branch principal que você usa
+      - main  # Aciona quando há um push na branch principal
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      # Etapa 1: Checar o código
+      - name: Checkout code
         uses: actions/checkout@v2
 
+      # Etapa 2: Configurar Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
 
+      # Etapa 3: Instalar dependências
       - name: Install dependencies
         run: |
+          cd ponderada  # Muda para o diretório correto
           npm install
 
-      - name: Build the website
+      # Etapa 4: Build do Docusaurus
+      - name: Build Docusaurus site
         run: |
+          cd ponderada  # Certifique-se de estar no diretório correto
           npm run build
 
+      # Etapa 5: Deploy no GitHub Pages
       - name: Deploy to GitHub Pages
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git checkout --orphan gh-pages  # Cria a branch gh-pages se não existir
-          git rm -rf .
-          cp -r build/* .
-          git add .
-          git commit -m "Deploy Docusaurus"
-          git push -f origin gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./ponderada/build  # O diretório de build correto
